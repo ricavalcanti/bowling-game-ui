@@ -1,9 +1,9 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core';
 
 // Theme created with material ui tool
 // https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=3E2723&secondary.color=FF8A65
 
-const theme = createTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       light: '#6a4f4b',
