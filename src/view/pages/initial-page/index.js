@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { getAllGames } from '../../../api/resources/games';
+import GameCard from '../../molecules/game-card';
 
 const InitialPage = () => {
   const [games, setGames] = React.useState([]);
@@ -18,6 +19,7 @@ const InitialPage = () => {
       {games?.map(game => (
         <h1>{game.id}</h1>
       ))}
+      <GameCard game={games[0]} />
     </div>
   );
 };

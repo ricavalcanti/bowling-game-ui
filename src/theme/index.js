@@ -18,10 +18,10 @@ const theme = createTheme({
       contrastText: '#000000',
     },
     background: {
-      default: '#222222',
+      default: '#283593',
     },
     text: {
-      primary: '#ffffff',
+      primary: '#000000',
     },
   },
 });
