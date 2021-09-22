@@ -17,6 +17,12 @@ const theme = createTheme({
       dark: '#c75b39',
       contrastText: '#000000',
     },
+    background: {
+      default: '#222222',
+    },
+    text: {
+      primary: '#ffffff',
+    },
   },
 });
 
