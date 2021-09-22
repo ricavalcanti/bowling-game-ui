@@ -1,11 +1,9 @@
-// import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles({
-//   cardActions: {
-//     root: {
-//       justifyContent: 'flex-end',
-//     },
-//   },
-// });
+const useStyles = makeStyles({
+  cardActions: {
+    justifyContent: 'flex-end',
+  },
+});
 
-// export default useStyles;
+export default useStyles;

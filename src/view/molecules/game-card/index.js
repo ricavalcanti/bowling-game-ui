@@ -6,13 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import constants from './constants';
-// import useStyles from './styles';
+import useStyles from './styles';
 
 const GameCard = props => {
   const { game } = props;
-  // const classes = useStyles();
-
-  console.log({ game });
+  const classes = useStyles();
 
   const isRunning = game?.status && !constants.game_status_enum[game.status];
 
@@ -23,11 +21,13 @@ const GameCard = props => {
         <Typography color="text.secondary">{`Status: ${game?.status}`}</Typography>
         <Typography color="text.secondary">{`Frames played: ${game?.frames?.length}`}</Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" variant="outlined" disabled>
-          Continue game
-        </Button>
-      </CardActions>
+      {isRunning && (
+        <CardActions className={classes.cardActions}>
+          <Button variant="outlined">
+            {constants.labels.continue}
+          </Button>
+        </CardActions>
+      )}
     </Card>
   );
 };
