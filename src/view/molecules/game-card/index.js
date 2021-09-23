@@ -5,14 +5,21 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from 'react-router-dom';
 import constants from './constants';
 import useStyles from './styles';
 
 const GameCard = props => {
   const { game } = props;
   const classes = useStyles();
+  const history = useHistory();
 
   const isRunning = game?.status && !constants.game_status_enum[game.status];
+
+  const handleContinueGameButton = event => {
+    event.preventDefault();
+    history.push(`/game/${game?.id}`);
+  };
 
   return (
     <Card>
@@ -23,7 +30,11 @@ const GameCard = props => {
       </CardContent>
       {isRunning && (
         <CardActions className={classes.cardActions}>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleContinueGameButton}
+          >
             {constants.labels.continue}
           </Button>
         </CardActions>
