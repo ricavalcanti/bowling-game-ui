@@ -23,7 +23,9 @@ const GameCard = props => {
       </CardContent>
       {isRunning && (
         <CardActions className={classes.cardActions}>
-          <Button variant="outlined">{constants.labels.continue}</Button>
+          <Button variant="contained" color="secondary">
+            {constants.labels.continue}
+          </Button>
         </CardActions>
       )}
     </Card>
