@@ -43,6 +43,8 @@ const RunningGamePage = props => {
     if (response) setSwitchRefresh(!switchRefresh);
   };
 
+  const isFinished = game?.status === 'finished';
+
   return (
     <>
       <ElevateAppBar
@@ -69,8 +71,11 @@ const RunningGamePage = props => {
             variant="contained"
             color="secondary"
             onClick={handleThrowBall}
+            disabled={isFinished}
           >
-            {constants.labels.throw_ball}
+            {isFinished
+              ? constants.labels.finished
+              : constants.labels.throw_ball}
           </Button>
         </Grid>
       </Grid>

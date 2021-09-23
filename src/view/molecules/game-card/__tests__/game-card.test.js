@@ -7,7 +7,8 @@ afterEach(cleanup);
 
 const defaultGame = runningGame;
 
-const setup = ({ game = defaultGame }) => render(<GameCard game={game} />);
+const setup = ({ game = defaultGame }) =>
+  render(<GameCard game={game} onDelete={jest.fn()} />);
 
 describe('GameCard', () => {
   it('should render correctly', () => {
