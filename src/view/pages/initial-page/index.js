@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { getAllGames } from '../../../api/resources/games';
+import { getAllGames, createGame } from '../../../api/resources/games';
 import GameCard from '../../molecules/game-card';
 import constants from './constants';
 
-const InitialPage = () => {
+const InitialPage = props => {
+  const { history } = props;
   const [games, setGames] = React.useState([]);
 
   const loadGames = async () => {
@@ -15,6 +17,12 @@ const InitialPage = () => {
   useEffect(() => {
     loadGames();
   }, []);
+
+  const handleStartNewButton = async event => {
+    event.preventDefault();
+    const newGame = await createGame();
+    if (newGame?.id) history.push(`/game/${newGame.id}`);
+  };
 
   return (
     <div>
@@ -29,13 +37,24 @@ const InitialPage = () => {
           </Grid>
         </Grid>
         <Grid item>
-          <Button size="large" variant="contained" color="secondary">
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            onClick={handleStartNewButton}
+          >
             {constants.labels.start_new}
           </Button>
         </Grid>
       </Grid>
     </div>
   );
+};
+
+InitialPage.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default InitialPage;

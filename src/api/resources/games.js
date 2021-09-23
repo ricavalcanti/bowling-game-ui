@@ -30,4 +30,15 @@ export const getOneGame = async id => {
   return responseBody;
 };
 
+export const createGame = async () => {
+  const response = await fetch(gamesBaseUrl, {
+    defaultHeaders,
+    method: 'POST',
+  });
+
+  const responseBody = await getResponseBody(response);
+
+  return responseBody;
+};
+
 export default { getAllGames, getOneGame };
