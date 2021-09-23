@@ -1,14 +1,5 @@
-import gamesBaseUrl from './constants';
-
-const getResponseBody = async response => {
-  const responseBody = await response.json();
-
-  return responseBody;
-};
-
-const defaultHeaders = {
-  'Content-Type': 'application/json',
-};
+import { gamesBaseUrl, defaultHeaders } from './constants';
+import { getResponseBody } from './utils';
 
 export const getAllGames = async () => {
   const response = await fetch(gamesBaseUrl, {
@@ -40,5 +31,3 @@ export const createGame = async () => {
 
   return responseBody;
 };
-
-export default { getAllGames, getOneGame };

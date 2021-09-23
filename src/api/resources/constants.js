@@ -1,5 +1,9 @@
 import { BASE_ENDPOINT_URL } from '../constants';
 
-const gamesBaseUrl = `${BASE_ENDPOINT_URL}/games`;
+export const gamesBaseUrl = `${BASE_ENDPOINT_URL}/games`;
+export const throwBaseUrl = `${BASE_ENDPOINT_URL}/throws`;
 
-export default gamesBaseUrl;
+export const defaultHeaders = {
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+};

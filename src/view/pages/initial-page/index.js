@@ -5,10 +5,12 @@ import Button from '@material-ui/core/Button';
 import { getAllGames, createGame } from '../../../api/resources/games';
 import GameCard from '../../molecules/game-card';
 import constants from './constants';
+import useStyles from './styles';
 
 const InitialPage = props => {
   const { history } = props;
   const [games, setGames] = React.useState([]);
+  const classes = useStyles();
 
   const loadGames = async () => {
     setGames(await getAllGames());
@@ -26,17 +28,13 @@ const InitialPage = props => {
 
   return (
     <div>
-      <Grid container justify="center" direction="column">
-        <Grid item>
-          <Grid container spacing={2} justify="center" direction="column">
-            {games?.map(game => (
-              <Grid key={game.id} item xs={12}>
-                <GameCard game={game} />
-              </Grid>
-            ))}
+      <Grid container spacing={2} justify="center" direction="column">
+        {games?.map(game => (
+          <Grid key={game.id} item xs={12} className={classes.gameCard}>
+            <GameCard game={game} />
           </Grid>
-        </Grid>
-        <Grid item>
+        ))}
+        <div className={classes.startButton}>
           <Button
             size="large"
             variant="contained"
@@ -45,7 +43,7 @@ const InitialPage = props => {
           >
             {constants.labels.start_new}
           </Button>
-        </Grid>
+        </div>
       </Grid>
     </div>
   );
