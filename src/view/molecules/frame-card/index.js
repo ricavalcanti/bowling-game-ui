@@ -7,6 +7,11 @@ import Typography from '@material-ui/core/Typography';
 const FrameCard = props => {
   const { frame } = props;
 
+  const getSecondBall = () =>
+    frame?.throws[1]?.knocked_pins && frame?.frame_type !== 'strike'
+      ? frame?.throws[1]?.knocked_pins
+      : '';
+
   return (
     <Card>
       <CardContent>
@@ -14,9 +19,7 @@ const FrameCard = props => {
         <Typography>{`First ball: ${
           frame?.throws[0]?.knocked_pins || ''
         }`}</Typography>
-        <Typography>{`Second ball: ${
-          frame?.throws[1]?.knocked_pins || ''
-        }`}</Typography>
+        <Typography>{`Second ball: ${getSecondBall()}`}</Typography>
         <Typography>{`Score: ${frame?.frame_score}`}</Typography>
         <Typography>{`Type: ${frame?.frame_type}`}</Typography>
       </CardContent>
