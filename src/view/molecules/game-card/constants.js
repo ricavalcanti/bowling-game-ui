@@ -3,9 +3,10 @@ const constants = {
     running: 0,
     finished: 1,
   },
-  labels:{
-    continue: 'Continue Game'
-  }
+  labels: {
+    continue: 'Continue Game',
+    delete: 'Delete Game',
+  },
 };
 
 export default constants;

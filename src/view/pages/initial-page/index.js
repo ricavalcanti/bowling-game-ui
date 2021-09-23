@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,8 @@ import ElevateAppBar from '../../atoms/elevate-app-bar';
 
 const InitialPage = props => {
   const { history } = props;
-  const [games, setGames] = React.useState([]);
+  const [games, setGames] = useState([]);
+  const [switchRefresh, setSwitchRefresh] = useState(false);
   const classes = useStyles();
 
   const loadGames = async () => {
@@ -19,7 +20,7 @@ const InitialPage = props => {
 
   useEffect(() => {
     loadGames();
-  }, []);
+  }, [switchRefresh]);
 
   const handleStartNewButton = async event => {
     event.preventDefault();
@@ -39,7 +40,10 @@ const InitialPage = props => {
       >
         {games?.map(game => (
           <Grid key={game.id} item xs={12} className={classes.gameCard}>
-            <GameCard game={game} />
+            <GameCard
+              game={game}
+              onDelete={() => setSwitchRefresh(!switchRefresh)}
+            />
           </Grid>
         ))}
         <div className={classes.startButton}>

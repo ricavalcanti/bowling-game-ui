@@ -11,23 +11,27 @@ const setup = ({ game = defaultGame }) => render(<GameCard game={game} />);
 
 describe('GameCard', () => {
   it('should render correctly', () => {
-    const { getByText, getByRole } = setup({});
+    const { getByText, queryAllByRole } = setup({});
 
-    const button = getByRole('button');
+    const deleteGame = queryAllByRole('button')[0];
+    const continueGame = queryAllByRole('button')[1];
 
     expect(getByText(`Game ${defaultGame.id}`)).toBeInTheDocument();
     expect(getByText(`Status: ${defaultGame?.status}`)).toBeInTheDocument();
     expect(
       getByText(`Frames played: ${defaultGame.frames.length}`)
     ).toBeInTheDocument();
-    expect(button).toBeEnabled();
+    expect(deleteGame).toBeEnabled();
+    expect(continueGame).toBeEnabled();
   });
 
   it('should show button disabled when game is finished', () => {
-    const { getByRole } = setup({ game: finishedGame });
+    const { queryAllByRole } = setup({ game: finishedGame });
 
-    const button = getByRole('button');
+    const deleteGame = queryAllByRole('button')[0];
+    const continueGame = queryAllByRole('button')[1];
 
-    expect(button).toBeDisabled();
+    expect(deleteGame).toBeEnabled();
+    expect(continueGame).toBeDisabled();
   });
 });

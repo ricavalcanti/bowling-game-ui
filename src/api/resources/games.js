@@ -31,3 +31,14 @@ export const createGame = async () => {
 
   return responseBody;
 };
+
+export const deleteGame = async id => {
+  const response = await fetch(`${gamesBaseUrl}/${id}`, {
+    defaultHeaders,
+    method: 'DELETE',
+  });
+
+  const responseBody = await getResponseBody(response);
+
+  return responseBody;
+};

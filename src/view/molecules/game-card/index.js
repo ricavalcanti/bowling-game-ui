@@ -8,9 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
 import constants from './constants';
 import useStyles from './styles';
+import { deleteGame } from '../../../api/resources/games';
 
 const GameCard = props => {
-  const { game } = props;
+  const { game, onDelete } = props;
   const classes = useStyles();
   const history = useHistory();
 
@@ -21,6 +22,12 @@ const GameCard = props => {
     history.push(`/game/${game?.id}`);
   };
 
+  const handleDeleteGameButton = async event => {
+    event.preventDefault();
+    const res = await deleteGame(game.id);
+    if (res) onDelete();
+  };
+
   return (
     <Card>
       <CardContent>
@@ -29,6 +36,13 @@ const GameCard = props => {
         <Typography>{`Frames played: ${game?.frames?.length}`}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
+        <Button
+          variant="outlined"
+          onClick={handleDeleteGameButton}
+          className={classes.deleteBtton}
+        >
+          {constants.labels.delete}
+        </Button>
         <Button
           variant="contained"
           color="secondary"
@@ -55,6 +69,7 @@ GameCard.propTypes = {
       })
     ),
   }).isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default GameCard;
