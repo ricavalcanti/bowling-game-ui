@@ -28,17 +28,16 @@ const GameCard = props => {
         <Typography>{`Status: ${game?.status}`}</Typography>
         <Typography>{`Frames played: ${game?.frames?.length}`}</Typography>
       </CardContent>
-      {isRunning && (
-        <CardActions className={classes.cardActions}>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleContinueGameButton}
-          >
-            {constants.labels.continue}
-          </Button>
-        </CardActions>
-      )}
+      <CardActions className={classes.cardActions}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleContinueGameButton}
+          disabled={!isRunning}
+        >
+          {isRunning ? constants.labels.continue : 'Game finished'}
+        </Button>
+      </CardActions>
     </Card>
   );
 };
