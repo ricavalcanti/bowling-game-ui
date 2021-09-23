@@ -1,4 +1,4 @@
-import { getAllGamesUrl } from './constants';
+import gamesBaseUrl from './constants';
 
 const getResponseBody = async response => {
   const responseBody = await response.json();
@@ -6,12 +6,12 @@ const getResponseBody = async response => {
   return responseBody;
 };
 
-export const getAllGames = async () => {
-  const defaultHeaders = {
-    'Content-Type': 'application/json',
-  };
+const defaultHeaders = {
+  'Content-Type': 'application/json',
+};
 
-  const response = await fetch(getAllGamesUrl, {
+export const getAllGames = async () => {
+  const response = await fetch(gamesBaseUrl, {
     defaultHeaders,
   });
 
@@ -20,4 +20,14 @@ export const getAllGames = async () => {
   return responseBody;
 };
 
-export default { getAllGames };
+export const getOneGame = async id => {
+  const response = await fetch(`${gamesBaseUrl}/${id}`, {
+    defaultHeaders,
+  });
+
+  const responseBody = await getResponseBody(response);
+
+  return responseBody;
+};
+
+export default { getAllGames, getOneGame };

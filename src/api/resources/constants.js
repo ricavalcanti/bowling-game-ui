@@ -1,5 +1,5 @@
 import { BASE_ENDPOINT_URL } from '../constants';
 
-export const getAllGamesUrl = `${BASE_ENDPOINT_URL}/games`;
+const gamesBaseUrl = `${BASE_ENDPOINT_URL}/games`;
 
-export default { getAllGamesUrl };
+export default gamesBaseUrl;
