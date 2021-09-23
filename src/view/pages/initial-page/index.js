@@ -6,6 +6,7 @@ import { getAllGames, createGame } from '../../../api/resources/games';
 import GameCard from '../../molecules/game-card';
 import constants from './constants';
 import useStyles from './styles';
+import ElevateAppBar from '../../atoms/elevate-app-bar';
 
 const InitialPage = props => {
   const { history } = props;
@@ -28,7 +29,14 @@ const InitialPage = props => {
 
   return (
     <div>
-      <Grid container spacing={2} justify="center" direction="column">
+      <ElevateAppBar title={constants.labels.games_list} />
+      <Grid
+        container
+        spacing={2}
+        justify="center"
+        direction="column"
+        className={classes.containerGameCards}
+      >
         {games?.map(game => (
           <Grid key={game.id} item xs={12} className={classes.gameCard}>
             <GameCard game={game} />

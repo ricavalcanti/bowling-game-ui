@@ -9,6 +9,9 @@ const useStyles = makeStyles({
     width: '50%',
     'align-self': 'center',
   },
+  containerGameCards: {
+    marginTop: '20px',
+  },
 });
 
 export default useStyles;

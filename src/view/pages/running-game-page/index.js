@@ -7,6 +7,7 @@ import { createThrow } from '../../../api/resources/throws';
 import FrameCard from '../../molecules/frame-card';
 import useStyles from './style';
 import constants from './constants';
+import ElevateAppBar from '../../atoms/elevate-app-bar';
 
 const RunningGamePage = props => {
   const { match } = props;
@@ -43,27 +44,37 @@ const RunningGamePage = props => {
   };
 
   return (
-    <Grid container direction="column" spacing={10}>
-      <Grid item>
-        <Grid container spacing={2} direction="row">
-          {game?.frames?.map(frame => (
-            <Grid key={frame.id} item xs={3}>
-              <FrameCard frame={frame} />
-            </Grid>
-          ))}
+    <>
+      <ElevateAppBar
+        title={`${constants.labels.game}: ${game?.id} - Total Score: ${game?.total_score}`}
+      />
+      <Grid container direction="column" spacing={10}>
+        <Grid item>
+          <Grid
+            container
+            spacing={2}
+            direction="row"
+            className={classes.containerFrameCards}
+          >
+            {game?.frames?.map(frame => (
+              <Grid key={frame.id} item xs={3}>
+                <FrameCard frame={frame} />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+        <Grid item className={classes.throwButton}>
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            onClick={handleThrowBall}
+          >
+            {constants.labels.throw_ball}
+          </Button>
         </Grid>
       </Grid>
-      <Grid item className={classes.throwButton}>
-        <Button
-          size="large"
-          variant="contained"
-          color="secondary"
-          onClick={handleThrowBall}
-        >
-          {constants.labels.throw_ball}
-        </Button>
-      </Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -4,6 +4,9 @@ const useStyles = makeStyles({
   throwButton: {
     'align-self': 'center',
   },
+  containerFrameCards: {
+    marginTop: '20px',
+  },
 });
 
 export default useStyles;
