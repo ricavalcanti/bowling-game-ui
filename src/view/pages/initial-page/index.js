@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
+import Grid from '@material-ui/core/Grid';
 import { getAllGames } from '../../../api/resources/games';
 import GameCard from '../../molecules/game-card';
+import useStyles from './styles';
 
 const InitialPage = () => {
   const [games, setGames] = React.useState([]);
+  const classes = useStyles();
 
   const loadGames = async () => {
     setGames(await getAllGames());
@@ -15,11 +18,13 @@ const InitialPage = () => {
 
   return (
     <div>
-      <h1>Hello world from initial</h1>
-      {games?.map(game => (
-        <h1>{game.id}</h1>
-      ))}
-      <GameCard game={games[0]} />
+      <Grid container spacing={2} justify="center" direction="column">
+        {games?.map(game => (
+          <Grid key={game.id} item xs={12} className={classes.gridItem}>
+            <GameCard game={game} />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };

@@ -18,14 +18,12 @@ const GameCard = props => {
     <Card>
       <CardContent>
         <Typography variant="h5">{`Game ${game?.id}`}</Typography>
-        <Typography color="text.secondary">{`Status: ${game?.status}`}</Typography>
-        <Typography color="text.secondary">{`Frames played: ${game?.frames?.length}`}</Typography>
+        <Typography>{`Status: ${game?.status}`}</Typography>
+        <Typography>{`Frames played: ${game?.frames?.length}`}</Typography>
       </CardContent>
       {isRunning && (
         <CardActions className={classes.cardActions}>
-          <Button variant="outlined">
-            {constants.labels.continue}
-          </Button>
+          <Button variant="outlined">{constants.labels.continue}</Button>
         </CardActions>
       )}
     </Card>
