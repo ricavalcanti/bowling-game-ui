@@ -44,15 +44,17 @@ const GameCard = props => {
 };
 
 GameCard.propTypes = {
-  game: PropTypes.objectOf({
+  game: PropTypes.shape({
     id: PropTypes.number,
     total_score: PropTypes.number,
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
-    status: PropTypes.number,
-    frames: PropTypes.arrayOf({
-      id: PropTypes.number,
-    }),
+    status: PropTypes.string,
+    frames: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+      })
+    ),
   }).isRequired,
 };
 

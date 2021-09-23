@@ -24,22 +24,8 @@ const FrameCard = props => {
   );
 };
 
-FrameCard.defaultProps = {
-  frame: {
-    id: null,
-    frame_score: null,
-    waiting_how_much_throws: null,
-    frame_number: null,
-    created_at: null,
-    updated_at: null,
-    game_id: null,
-    frame_type: null,
-    throws: [],
-  },
-};
-
 FrameCard.propTypes = {
-  frame: PropTypes.objectOf({
+  frame: PropTypes.shape({
     id: PropTypes.number,
     frame_score: PropTypes.number,
     waiting_how_much_throws: PropTypes.number,
@@ -47,14 +33,16 @@ FrameCard.propTypes = {
     created_at: PropTypes.string,
     updated_at: PropTypes.string,
     game_id: PropTypes.number,
-    frame_type: PropTypes.number,
-    throws: PropTypes.arrayOf({
-      id: PropTypes.number,
-      knocked_pins: PropTypes.number,
-      created_at: PropTypes.string,
-      updated_at: PropTypes.string,
-    }),
-  }),
+    frame_type: PropTypes.string,
+    throws: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        knocked_pins: PropTypes.number,
+        created_at: PropTypes.string,
+        updated_at: PropTypes.string,
+      })
+    ),
+  }).isRequired,
 };
 
 export default FrameCard;

@@ -41,7 +41,10 @@ const RunningGamePage = props => {
 };
 
 RunningGamePage.propTypes = {
-  match: PropTypes.objectOf({ id: PropTypes.number }).isRequired,
+  match: PropTypes.shape({
+    id: PropTypes.number,
+    params: PropTypes.shape({ id: PropTypes.string }),
+  }).isRequired,
 };
 
 export default RunningGamePage;
